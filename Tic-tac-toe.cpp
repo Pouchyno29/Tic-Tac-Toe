@@ -1,9 +1,11 @@
 /**
-    Programmer  :   Stanley
-    Class       :   ET-575 Introduction to C++ Programming Design and Implementation
-    Semester    :   Spring 2017
-    Professor   :   Trowbridge
-    Exam        :   Spring 2017 Final Exam
+    Programmer  	:   Stanley
+    Class       	:   ET-575 Introduction to C++ Programming Design and Implementation
+    Semester    	:   Spring 2017
+	Date			:	03/15/2017
+    Professor   	:   Trowbridge
+    Exam        	:   Spring 2017 Final Exam
+	Software uses   :	Code:blocks
 **/
 
 #include <iostream>
@@ -52,6 +54,13 @@ void populate(char board[GRIDSIZE][GRIDSIZE]){
 
 //This function Print out the board on the console.
 void output(char board[GRIDSIZE][GRIDSIZE]){
+
+    //Clear the screen for the next game.
+    system("CLS");
+
+    cout << "+-------------------+" << endl;
+    cout << "|     TIC-TAC-TOE   |" << endl;
+    cout << "+-------------------+" << endl;
 
     for(int y = 0; y < GRIDSIZE; y++){
             cout << "\t";
@@ -305,6 +314,17 @@ void menu(char board[GRIDSIZE][GRIDSIZE]){
 			cout << "Enter a number (from 1 to 3): ";
 			cin >> option; //Take input from user (1 - 2 or 3).
 
+            //Check if the current option chosen is the same as the old option that were chosen
+            // This will determine if the same player is trying to play twice in a row.
+			if(option == previousPlayer){
+                cout << endl << endl; //skip 2 lines.
+                //Show a message error
+                cout << "Sorry you can't play twice in a row...." << endl;
+                system("Pause");//Pause the game and wait for the current player to press any key to continue.
+                output(board);//Print out the new updated board to the screen.
+			}else{ // Otherwise
+                // The currentPlayer will be the option chosen
+                currentPlayer = option;
                 //Examine the option chosen
                 switch(option){
 
@@ -315,6 +335,7 @@ void menu(char board[GRIDSIZE][GRIDSIZE]){
                         updateBoard(board, playerMark, posY, posX);//Updated the board with the X using the coordinate.
                         output(board);//Print out the new updated board to the screen.
                         checkGame(board, playerMark);//Check if player X won the game.
+                        previousPlayer = currentPlayer;//The previousPlayer equal to the old option chosen
                         break;
                      case 2://If the current user chose 1.
                         playerMark = 'O';//Then it is player O.
@@ -323,6 +344,7 @@ void menu(char board[GRIDSIZE][GRIDSIZE]){
                         updateBoard(board, playerMark, posY, posX);//Updated the board with the X using the coordinate.
                         output(board);//Print out the new updated board to the screen.
                         checkGame(board, playerMark);//Check if player X won the game.
+                        previousPlayer = currentPlayer;//The previousPlayer equal to the old option chosen
                         break;
                      case 3://If any of the players enter 3
                          //Then let the player knows the game will end.
@@ -335,6 +357,7 @@ void menu(char board[GRIDSIZE][GRIDSIZE]){
                         cout << endl << endl; //skip 2 lines.
                 }
 
+			}
 	   }
 }
 
