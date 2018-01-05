@@ -58,17 +58,23 @@ void output(char board[GRIDSIZE][GRIDSIZE]){
     //Clear the screen for the next game.
     system("CLS");
 
-    cout << "+-------------------+" << endl;
-    cout << "|     TIC-TAC-TOE   |" << endl;
-    cout << "+-------------------+" << endl;
+    cout << "  " << "+-------------------+" << endl;
+    cout << "  " << "|     TIC-TAC-TOE   |" << endl;
+    cout << "  " << "+-------------------+" << endl;
 
     for(int y = 0; y < GRIDSIZE; y++){
-            cout << "\t";
             for(int x = 0; x < GRIDSIZE; x++){
-                cout << board[y][x] << " ";
+                board[y][x];
             }
-            cout << endl;
         }
+
+    cout << endl << endl;
+    cout << "    " << board[0][0] << "   |   " << board[0][1] << "   |   " << board[0][2] << endl;
+    cout << "  " << "------+-------+------"<< endl;
+    cout << "    " << board[1][0] << "   |   " << board[1][1] << "   |   " << board[1][2] << endl;
+    cout << "  " << "------+-------+------"<< endl;
+    cout << "    " << board[2][0] << "   |   " << board[2][1] << "   |   " << board[2][2] << endl;
+
 
 }
 
